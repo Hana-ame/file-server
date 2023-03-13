@@ -26,8 +26,8 @@
 </head>
 <body id="body">
 <div id="wrap">
-<label for="input">Choose a picture:</label>
-<input type="file" id="input" name="img" accept="image/*" multiple />
+<label for="input">Choose a file:</label>
+<input type="file" id="input" name="img" accept="*/*" multiple />
 </div>
 <div id="div">
 </div>
@@ -37,7 +37,8 @@
       if (file){ // do nothing when paste texts.
         console.log(file);
         console.log(file.type); // 'image/png', while paste a picture.
-        if (file.type.startsWith("image")) {
+        // if (file.type.startsWith("image")) {
+        if (true) {
 
           const element = document.getElementById('div');
           let div = document.createElement('div');
@@ -49,7 +50,7 @@
           divWrapper.className = 'wrapper';
           let urlTag = document.createElement('div');
           urlTag.className = 'inner';
-          urlTag.innerText = '图片链接';
+          urlTag.innerText = '文件链接';
           divWrapper.appendChild(urlTag);
           let urlLink = document.createElement('input');
           urlLink.onmouseover = function(){urlLink.select();};

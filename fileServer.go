@@ -41,6 +41,9 @@ func main() {
 	})
 
 	app.Get("/0/:hash/:filename", func(c *fiber.Ctx) error {
+
+		log.Println(c.GetReqHeaders()["Cf-Connecting-Ip"])
+
 		hash := c.Params("hash")
 		f, err := os.Open("./0/" + hash)
 		if err != nil {
@@ -56,6 +59,7 @@ func main() {
 				"error":    err.Error(),
 			})
 		}
+		c.Set("Content-Type", "application/octet-stream")
 		_, err = c.Status(fiber.StatusOK).Write(data)
 		return err
 	})
