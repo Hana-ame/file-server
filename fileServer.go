@@ -64,8 +64,12 @@ func main() {
 		return err
 	})
 
-	app.Static("/", "./html")
+	app.Static("/", ".", fiber.Static{
+		Compress: true,
+		Browse:   true,
+		Download: false, // it will make all things being downloaded. (false is default)
+	})
 
 	// Start server
-	log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen(":80"))
 }
